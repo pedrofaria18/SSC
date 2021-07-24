@@ -1,0 +1,70 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'main/esgotado.css' %}">
+    <link rel="icon" href="{% static 'main/icon.ico'%}">
+    <title>Salve Seu Cabelo - Em Breve</title>
+</head>
+<body>
+    <div class='main-div'>
+        <img src="{% static 'main/logo.png'%}" alt="imagem" class='logo'>
+        <h1 class="text">Ops! Nosso produto está realmente um sucesso! Estamos sem estoque, mas já providenciamos um novo lote. Eu gostaria de avisar você assim que chegar e para isso,  preciso que preencha os dados abaixo, pode ser?</h1>
+        <form id='form' for='content' class="form">
+            {% csrf_token %}
+            <label for="name">Nome:</label><br>
+            <input type="text" id="name" name="name"><br><br>
+            <label for="phone_number">WhatsApp (por aqui é mais rápido):</label><br>
+            <input type="text" id="phone_number" name="phone_number"><br><br>
+            <label for="email">Email (Só para garantir rsrs):</label><br>
+            <input type="email" id="email" name="email"><br>
+
+            <button type='submit' class="submit-button">Enviar</button>
+        </form>
+        <p class="response-sucess">Recebemos seu contato, avisaremos assim que o novo lote chegar!</p>
+        <p class="response-error">Perdão, tivemos um erro ao salvar seu contato, tente novamente mais tarde</p>
+    </div>
+</body>
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+
+        const csrf_token = "{{ csrf_token }}"
+        const post_url = "{{ post_url }}"
+
+        document.querySelector(".form").onsubmit = () => {
+            let name = document.querySelector("#name").value
+            let phone_number = document.querySelector("#phone_number").value
+            let email = document.querySelector("#email").value
+
+            fetch(post_url, {
+                method: 'POST',
+                mode: 'same-origin',
+                credentials: 'include',
+                headers: {
+                    'X-CSRFToken': csrf_token
+                },
+                body: JSON.stringify({
+                    name: name,
+                    email: email,
+                    phone_number: phone_number
+                })
+            })
+            .then(response => {
+                console.log(response.status)
+                if (response.status == 200) {
+                    document.querySelector(".response-sucess").style.display = "block"
+                    document.querySelector(".submit-button").disabled = true
+                }
+                else {
+                    document.querySelector(".response-error").style.display = "block"
+                }
+            })
+
+            return false;
+        }
+    })
+</script>
+</html>

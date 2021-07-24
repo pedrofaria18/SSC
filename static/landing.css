@@ -322,6 +322,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  margin-bottom: 100px;
 }
 
 .compra #text1 {
@@ -393,7 +394,6 @@
   border-radius: 36px;
   cursor: pointer;
   margin-top: -20px;
-  margin-bottom: 100px;
 }
 
 .compra button:hover {
@@ -406,6 +406,10 @@
 @media (max-width: 1440px) {
   .banner {
     flex-direction: column;
+  }
+
+  .img-checkout {
+    width: 100%;
   }
 
   .poderes {
@@ -561,8 +565,6 @@
     height: 70px;
 
     font-size: 1.2rem;
-
-    margin-bottom: 100px;
   }
 
   .banner {
