@@ -621,13 +621,11 @@
   .description-purple h1,
   .description-orange h1 {
     font-size: 2rem;
-    margin-bottom: 10px;
   }
 
   .description-purple h2,
   .description-orange h2 {
     font-size: 1.3rem;
-    margin-bottom: 10px;
   }
 
   .description-purple p,
@@ -657,14 +655,14 @@
 
   .banner #banner-text2 {
     font-size: 1.1rem;
-}
+  }
 
-.banner #banner-text3 {
-  font-size: 1.1rem;
-}
+  .banner #banner-text3 {
+    font-size: 1.1rem;
+  }
 
-.body-checkout-item p {
-  color: #fff;
-  font-size: 30px;
-}
+  .body-checkout-item p {
+    color: #fff;
+    font-size: 30px;
+  }
 }
